@@ -1,0 +1,6 @@
+{
+  "protocol": "rapp-neighborhood-protocol/1.0",
+  "name": "work-cubbies",
+  "address": "rapp://neighborhood/work-cubbies@github.com/kody-w/rapp-work-cubbies",
+  "neighborhood_rappid": "rappid:@kody-w/work-cubbies:2a7202d8c504431d9cd53e289d0fbea9170eca6ade50e19ad332dd0c530e18d1"
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "rapp-super-rar/1.0",
+  "neighborhood_rappid": "rappid:@kody-w/work-cubbies:2a7202d8c504431d9cd53e289d0fbea9170eca6ade50e19ad332dd0c530e18d1",
+  "built_at": "2026-08-15T18:59:20Z",
+  "note": "Public Work Cubbies neighborhood index; work ledgers remain show-and-tell and are not streamable.",
+  "count": 1,
+  "by_kind": {
+    "neighborhood": 1
+  },
+  "entries": [
+    {
+      "kind": "neighborhood",
+      "name": "work-cubbies.json",
+      "cubby": "copilot-cli-work",
+      "path": "cubbies/copilot-cli-work/neighborhoods/work-cubbies.json",
+      "streamable": false,
+      "sha256": "d9206ed35954d038e52f3073b27b9c12148eb615581f268c64afd24f2f2f1dc6",
+      "purpose": "work-cubbies.json"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+name: Validate Work Cubbies
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run contract tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Verify neighborhood and append-only boundary
+        env:
+          GITHUB_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          GITHUB_HEAD_REF: ${{ github.head_ref }}
+        run: python3 scripts/validate.py
+

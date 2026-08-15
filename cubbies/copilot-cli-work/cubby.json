@@ -1,0 +1,23 @@
+{
+  "schema": "rapp-cubby/1.0",
+  "github_login": "kody-w",
+  "slug": "copilot-cli-work",
+  "display_name": "Copilot CLI Work Cubby",
+  "what_im_cooking": "Clock and evidence Copilot CLI engineering work for kody-w",
+  "created_at": "2026-08-15T02:45:59Z",
+  "estate": {
+    "anatomy": [
+      "neighborhoods",
+      "show-and-tell"
+    ]
+  },
+  "streamable": {},
+  "parent_cubby": null,
+  "is_sub_cubby": false,
+  "neighborhood": {
+    "name": "work-cubbies",
+    "address": "rapp://neighborhood/work-cubbies@github.com/kody-w/rapp-work-cubbies",
+    "neighborhood_rappid": "rappid:@kody-w/work-cubbies:2a7202d8c504431d9cd53e289d0fbea9170eca6ade50e19ad332dd0c530e18d1"
+  },
+  "materialized_at": "2026-08-15T18:59:10Z"
+}

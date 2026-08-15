@@ -1,0 +1,22 @@
+{
+  "protocol": "rapp-neighborhood-protocol/1.0",
+  "name": "work-cubbies",
+  "display_name": "Work Cubbies",
+  "purpose": "A PR-consent neighborhood where each neighbor keeps an isolated, append-only work cubby with clock-in, clock-out, duration, summary, and evidence records.",
+  "neighborhood_rappid": "rappid:@kody-w/work-cubbies:2a7202d8c504431d9cd53e289d0fbea9170eca6ade50e19ad332dd0c530e18d1",
+  "address": {
+    "rapp": "rapp://neighborhood/work-cubbies@github.com/kody-w/rapp-work-cubbies",
+    "git": "https://github.com/kody-w/rapp-work-cubbies",
+    "manifest": "https://raw.githubusercontent.com/kody-w/rapp-work-cubbies/main/neighborhood.json"
+  },
+  "cubby_protocol": "rapp-cubby/1.0",
+  "super_rar": "super-rar/index.json",
+  "transport": {
+    "durable_async": "5b-issues",
+    "membership": "PR-consent"
+  },
+  "public_boundary": "Only committed, sanitized cubby records are public. Secrets, credentials, private transcripts, and raw prompts are refused.",
+  "join_branch": "cubby/<member-id>/join",
+  "member_write_boundary": "cubbies/<member-id>/ plus the derived super-rar/index.json"
+}
+
