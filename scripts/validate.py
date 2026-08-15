@@ -12,6 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 import work_cubby  # noqa: E402
+from scripts.privacy import validate_public_tree  # noqa: E402
 
 
 def changed_files(base_sha: str) -> list[str]:
@@ -84,6 +85,7 @@ def main() -> int:
     """Run all validation gates."""
     try:
         result = work_cubby.verify_all()
+        validate_public_tree(ROOT)
         base_sha = os.environ.get("GITHUB_BASE_SHA")
         head_ref = os.environ.get("GITHUB_HEAD_REF", "")
         if base_sha:
@@ -105,4 +107,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

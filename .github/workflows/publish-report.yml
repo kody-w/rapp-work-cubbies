@@ -1,0 +1,48 @@
+name: Publish Global Work Report
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "cubbies/**"
+      - "neighborhood.json"
+      - "scripts/build_global_report.py"
+      - "scripts/privacy.py"
+  workflow_dispatch:
+
+concurrency:
+  group: work-cubbies-global-report
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate public boundary
+        run: python3 scripts/validate.py
+      - name: Build global report
+        run: python3 scripts/build_global_report.py
+      - name: Publish generated report
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- docs/; then
+            echo "Global report already current"
+            exit 0
+          fi
+          git config user.name "work-cubbies-reporter"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          git commit -m "report: refresh global work activity"
+          git pull --rebase origin main
+          git push origin HEAD:main
+

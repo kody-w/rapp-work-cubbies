@@ -25,4 +25,5 @@ jobs:
           GITHUB_BASE_SHA: ${{ github.event.pull_request.base.sha }}
           GITHUB_HEAD_REF: ${{ github.head_ref }}
         run: python3 scripts/validate.py
-
+      - name: Build privacy-safe global report
+        run: python3 scripts/build_global_report.py
