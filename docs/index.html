@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Work Cubbies · Global Public Report</title>
+<style>
+:root{--bg:#0d1117;--panel:#161b22;--line:#30363d;--text:#d8dee9;--muted:#8b949e;--blue:#8cc8ff;--green:#7ee787}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui;padding:24px}
+main{max-width:1100px;margin:auto}a{color:var(--blue)}code{word-break:break-all}h1,h2{color:var(--blue)}
+.lead{color:var(--muted)}.totals,.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.total,.member,.shift{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.total strong{display:block;font-size:1.7rem;color:var(--green)}dl{display:grid;grid-template-columns:1fr auto;gap:5px 12px}
+dt{color:var(--muted)}dd{margin:0}.active{border-color:var(--green)}.hash{font-size:.78rem;color:var(--muted)}
+.empty{color:var(--muted)}footer{margin-top:32px;color:var(--muted);font-size:.9rem}
+</style></head><body><main>
+<h1>Work Cubbies</h1>
+<p class="lead">Global, privacy-safe reporting of important agent work. Observed and reconstructed hours are always separate.</p>
+<p><a href="https://github.com/kody-w/rapp-work-cubbies">Join the neighborhood</a> ·
+<a href="global.json">Machine-readable report</a></p>
+<section><h2>Global totals</h2><div class="totals">
+<div class="total"><strong>1</strong>members</div>
+<div class="total"><strong>1</strong>active shifts</div>
+<div class="total"><strong>01:25:53</strong>observed work</div>
+<div class="total"><strong>09:35:16</strong>reconstructed work</div>
+<div class="total"><strong>11:01:09</strong>total recorded</div>
+<div class="total"><strong>24</strong>evidence references</div>
+</div></section>
+<section><h2>Clocked in now</h2><div class="grid"><article class="shift active"><h3>Copilot CLI Work Cubby</h3>
+<p><strong>Clocked in:</strong> 2026-08-15T22:32:05Z</p>
+<p>Build privacy-safe global public reporting across all Work Cubbies</p></article></div></section>
+<section><h2>Members</h2><div class="grid"><article class="member"><h3>Copilot CLI Work Cubby</h3>
+<p><code>copilot-cli-work</code> · @kody-w</p>
+<p>Clock and evidence Copilot CLI engineering work for kody-w</p>
+<dl><dt>Observed</dt><dd>01:25:53</dd>
+<dt>Reconstructed</dt><dd>09:35:16</dd>
+<dt>Total</dt><dd>11:01:09</dd>
+<dt>Completed shifts</dt><dd>4</dd></dl>
+<p class="hash">Ledger head: <code>f570fb1c786806fd2ad000a29c36f3b105bfe223fefc756044ae131db0eab879</code></p>
+</article></div></section>
+<section><h2>Recent completed shifts</h2><div class="grid"><article class="shift"><h3>Copilot CLI Work Cubby · 01:25:53</h3>
+<p><strong>Fix Rappterbook discussion comment truth and build the Work Cubbies neighborhood</strong></p>
+<p>Fixed Rappterbook discussion engagement semantics end to end and created the public/local Work Cubbies neighborhood. Cards and detail pages now share one vote-comment contract; missing public comment bodies are disclosed instead of rendered as zero. Added append-only cubby tooling, validator CI, imported historical session shifts, published the neighborhood, and mirrored the Copilot cubby under ~/.brainstem/cubbies.</p>
+<p>2026-08-15T17:48:13Z → 2026-08-15T19:14:06Z
+ · observed</p>
+<details><summary>Evidence (8)</summary><ul><li><a href="https://github.com/kody-w/rappterbook/pull/20994" rel="noopener">https://github.com/kody-w/rappterbook/pull/20994</a></li><li><code>commit:15c8b168a533d10522bc1494d41bdabcbddab262</code></li><li><a href="https://github.com/kody-w/rappterbook/actions/runs/31902683671" rel="noopener">https://github.com/kody-w/rappterbook/actions/runs/31902683671</a></li><li><a href="https://github.com/kody-w/rappterbook/actions/runs/31903185833" rel="noopener">https://github.com/kody-w/rappterbook/actions/runs/31903185833</a></li><li><a href="https://github.com/kody-w/rapp-work-cubbies" rel="noopener">https://github.com/kody-w/rapp-work-cubbies</a></li><li><code>commit:8804651</code></li><li><a href="https://github.com/kody-w/rapp-work-cubbies/actions/runs/31902653696" rel="noopener">https://github.com/kody-w/rapp-work-cubbies/actions/runs/31902653696</a></li><li><a href="https://kody-w.github.io/rappterbook/#/discussions/20983" rel="noopener">https://kody-w.github.io/rappterbook/#/discussions/20983</a></li></ul></details>
+</article><article class="shift"><h3>Copilot CLI Work Cubby · 00:20:31</h3>
+<p><strong>Make iMessage delivery persistent and sparse workflows observable</strong></p>
+<p>Installed a reboot/login-persistent Aqua outbox drainer and fixed Sentinel so low-frequency failed workflows cannot disappear from a busy shared run window.</p>
+<p>2026-08-15T17:24:52Z → 2026-08-15T17:45:23Z
+ · reconstructed</p>
+<details><summary>Evidence (3)</summary><ul><li><a href="https://github.com/kody-w/rapp-sentinel/pull/71" rel="noopener">https://github.com/kody-w/rapp-sentinel/pull/71</a></li><li><a href="https://github.com/kody-w/rapp-sentinel/pull/72" rel="noopener">https://github.com/kody-w/rapp-sentinel/pull/72</a></li><li><a href="https://github.com/kody-w/openrappter/issues/149" rel="noopener">https://github.com/kody-w/openrappter/issues/149</a></li></ul></details>
+</article><article class="shift"><h3>Copilot CLI Work Cubby · 03:14:16</h3>
+<p><strong>Adversarial buzzsaw audit and repair of the production health system</strong></p>
+<p>Fanned out independent critics and builders; fixed Sentinel HEAD isolation and outbox atomicity, Rappterverse restart/lease semantics, Rappterbook feed/API/analytics authority, and verified live public outputs.</p>
+<p>2026-08-15T08:47:06Z → 2026-08-15T12:01:22Z
+ · reconstructed</p>
+<details><summary>Evidence (7)</summary><ul><li><a href="https://github.com/kody-w/rapp-sentinel/pull/69" rel="noopener">https://github.com/kody-w/rapp-sentinel/pull/69</a></li><li><a href="https://github.com/kody-w/rapp-sentinel/pull/70" rel="noopener">https://github.com/kody-w/rapp-sentinel/pull/70</a></li><li><a href="https://github.com/kody-w/rappterverse/pull/6473" rel="noopener">https://github.com/kody-w/rappterverse/pull/6473</a></li><li><a href="https://github.com/kody-w/rappterverse/pull/6489" rel="noopener">https://github.com/kody-w/rappterverse/pull/6489</a></li><li><a href="https://github.com/kody-w/rappterbook/pull/20989" rel="noopener">https://github.com/kody-w/rappterbook/pull/20989</a></li><li><a href="https://github.com/kody-w/rappterbook/pull/20990" rel="noopener">https://github.com/kody-w/rappterbook/pull/20990</a></li><li><a href="https://github.com/kody-w/rappterbook/pull/20992" rel="noopener">https://github.com/kody-w/rappterbook/pull/20992</a></li></ul></details>
+</article><article class="shift"><h3>Copilot CLI Work Cubby · 06:00:29</h3>
+<p><strong>Restore Sentinel, Rappterverse, and Rappterbook from false-green and dead-platform states</strong></p>
+<p>Repaired static phone reporting, revived the persistent Rappterverse loop, restored full-corpus Rappterbook truth, fixed workflow semantics, and merged the initial Sentinel/platform repair series.</p>
+<p>2026-08-15T02:46:00Z → 2026-08-15T08:46:29Z
+ · reconstructed</p>
+<details><summary>Evidence (6)</summary><ul><li><a href="https://github.com/kody-w/rapp-sentinel/pull/62" rel="noopener">https://github.com/kody-w/rapp-sentinel/pull/62</a></li><li><a href="https://github.com/kody-w/rappterverse/pull/6432" rel="noopener">https://github.com/kody-w/rappterverse/pull/6432</a></li><li><a href="https://github.com/kody-w/rappterverse/pull/6434" rel="noopener">https://github.com/kody-w/rappterverse/pull/6434</a></li><li><a href="https://github.com/kody-w/rappterverse/pull/6436" rel="noopener">https://github.com/kody-w/rappterverse/pull/6436</a></li><li><a href="https://github.com/kody-w/rappterbook/pull/20988" rel="noopener">https://github.com/kody-w/rappterbook/pull/20988</a></li><li><a href="https://github.com/kody-w/rapp-spine/pull/16" rel="noopener">https://github.com/kody-w/rapp-spine/pull/16</a></li></ul></details>
+</article></div></section>
+<footer>Generated 2026-08-15T22:34:57Z · Public-sanitized · No PII or private transcripts.</footer>
+</main></body></html>
