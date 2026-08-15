@@ -13,15 +13,15 @@
   },
   "totals": {
     "members": 1,
-    "completed_shifts": 4,
-    "active_shifts": 1,
-    "observed_seconds": 5153,
-    "observed_hms": "01:25:53",
+    "completed_shifts": 5,
+    "active_shifts": 0,
+    "observed_seconds": 5449,
+    "observed_hms": "01:30:49",
     "reconstructed_seconds": 34516,
     "reconstructed_hms": "09:35:16",
-    "total_seconds": 39669,
-    "total_hms": "11:01:09",
-    "evidence_count": 24
+    "total_seconds": 39965,
+    "total_hms": "11:06:05",
+    "evidence_count": 32
   },
   "members": [
     {
@@ -30,21 +30,22 @@
       "github_login": "kody-w",
       "purpose": "Clock and evidence Copilot CLI engineering work for kody-w",
       "joined_at": "2026-08-15T02:45:59Z",
-      "completed_shifts": 4,
-      "active_shifts": 1,
-      "observed_seconds": 5153,
-      "observed_hms": "01:25:53",
+      "completed_shifts": 5,
+      "active_shifts": 0,
+      "observed_seconds": 5449,
+      "observed_hms": "01:30:49",
       "reconstructed_seconds": 34516,
       "reconstructed_hms": "09:35:16",
-      "total_seconds": 39669,
-      "total_hms": "11:01:09",
-      "evidence_count": 24,
-      "ledger_records": 10,
-      "ledger_head_sha256": "f570fb1c786806fd2ad000a29c36f3b105bfe223fefc756044ae131db0eab879",
+      "total_seconds": 39965,
+      "total_hms": "11:06:05",
+      "evidence_count": 32,
+      "ledger_records": 11,
+      "ledger_head_sha256": "0eb6cf827913b39b3626636c61017e0cc6465438f5041ee46ac4c8e85f62ee4c",
       "cubby_manifest": "https://raw.githubusercontent.com/kody-w/rapp-work-cubbies/main/cubbies/copilot-cli-work/cubby.json"
     }
   ],
-  "active_shifts": [
+  "active_shifts": [],
+  "recent_completed_shifts": [
     {
       "member_id": "copilot-cli-work",
       "display_name": "Copilot CLI Work Cubby",
@@ -52,11 +53,23 @@
       "task": "Build privacy-safe global public reporting across all Work Cubbies",
       "source": "Copilot CLI session timestamp",
       "started_at": "2026-08-15T22:32:05Z",
+      "ended_at": "2026-08-15T22:37:01Z",
+      "elapsed_seconds": 296,
+      "elapsed_hms": "00:04:56",
+      "summary": "Published global, privacy-safe Work Cubby reporting with observed and reconstructed time separated, active shifts listed without speculative duration, public evidence and ledger heads exposed, PII/secret/private-path gates, automated report refreshes after cubby merges, and GitHub Pages human/machine endpoints.",
+      "evidence": [
+        "https://github.com/kody-w/rapp-work-cubbies/pull/1",
+        "https://github.com/kody-w/rapp-work-cubbies/pull/2",
+        "commit:8017335915a4d6522065f54da3f65aece0b6b21f",
+        "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31912522180",
+        "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31912538944",
+        "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31912551858",
+        "https://kody-w.github.io/rapp-work-cubbies/",
+        "https://kody-w.github.io/rapp-work-cubbies/global.json"
+      ],
       "reconstructed": false,
-      "sha256": "f570fb1c786806fd2ad000a29c36f3b105bfe223fefc756044ae131db0eab879"
-    }
-  ],
-  "recent_completed_shifts": [
+      "sha256": "0eb6cf827913b39b3626636c61017e0cc6465438f5041ee46ac4c8e85f62ee4c"
+    },
     {
       "member_id": "copilot-cli-work",
       "display_name": "Copilot CLI Work Cubby",
@@ -146,5 +159,5 @@
       "sha256": "1aea1f43220a8ac918ae32b52933e9cc88b73dd4e51f9b3c8bb25cfb5b8412dc"
     }
   ],
-  "generated_at": "2026-08-15T22:34:57Z"
+  "generated_at": "2026-08-15T22:37:31Z"
 }
