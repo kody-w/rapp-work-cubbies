@@ -14,7 +14,7 @@
   "totals": {
     "members": 1,
     "completed_shifts": 6,
-    "active_shifts": 0,
+    "active_shifts": 1,
     "observed_seconds": 5740,
     "observed_hms": "01:35:40",
     "reconstructed_seconds": 34516,
@@ -34,7 +34,7 @@
       "purpose": "Clock and evidence Copilot CLI engineering work for kody-w",
       "joined_at": "2026-08-15T02:45:59Z",
       "completed_shifts": 6,
-      "active_shifts": 0,
+      "active_shifts": 1,
       "observed_seconds": 5740,
       "observed_hms": "01:35:40",
       "reconstructed_seconds": 34516,
@@ -44,12 +44,23 @@
       "evidence_count": 41,
       "proved_shifts": 6,
       "unproved_shifts": 0,
-      "ledger_records": 19,
-      "ledger_head_sha256": "73dbae9a89642b2de0c4b2e55d6ff2297097c52ae4f977977555fb71e702152f",
+      "ledger_records": 20,
+      "ledger_head_sha256": "4332d768dc3ee8c111fa72aa5fb6fc8afcac9bd99bf3381d3c09b781464b07f9",
       "cubby_manifest": "https://raw.githubusercontent.com/kody-w/rapp-work-cubbies/main/cubbies/copilot-cli-work/cubby.json"
     }
   ],
-  "active_shifts": [],
+  "active_shifts": [
+    {
+      "member_id": "copilot-cli-work",
+      "display_name": "Copilot CLI Work Cubby",
+      "shift_id": "rappterbook-detail-complete-publication",
+      "task": "Gate Rappterbook public discovery on complete cached comment bodies",
+      "source": "Copilot CLI session timestamp",
+      "started_at": "2026-08-16T01:16:00Z",
+      "reconstructed": false,
+      "sha256": "4332d768dc3ee8c111fa72aa5fb6fc8afcac9bd99bf3381d3c09b781464b07f9"
+    }
+  ],
   "completed_shifts": [
     {
       "member_id": "copilot-cli-work",
@@ -570,5 +581,5 @@
       ]
     }
   ],
-  "generated_at": "2026-08-16T00:41:46Z"
+  "generated_at": "2026-08-16T01:16:31Z"
 }
