@@ -22,9 +22,9 @@
     "total_seconds": 40256,
     "total_hms": "11:10:56",
     "evidence_count": 41,
-    "proved_shifts": 5,
-    "unproved_shifts": 1,
-    "proof_coverage_pct": 83.3
+    "proved_shifts": 6,
+    "unproved_shifts": 0,
+    "proof_coverage_pct": 100.0
   },
   "members": [
     {
@@ -42,10 +42,10 @@
       "total_seconds": 40256,
       "total_hms": "11:10:56",
       "evidence_count": 41,
-      "proved_shifts": 5,
-      "unproved_shifts": 1,
-      "ledger_records": 18,
-      "ledger_head_sha256": "6ad9bc0b9925b25541971705d9e679c44c226ea71013ea0310a4e13af773108b",
+      "proved_shifts": 6,
+      "unproved_shifts": 0,
+      "ledger_records": 19,
+      "ledger_head_sha256": "73dbae9a89642b2de0c4b2e55d6ff2297097c52ae4f977977555fb71e702152f",
       "cubby_manifest": "https://raw.githubusercontent.com/kody-w/rapp-work-cubbies/main/cubbies/copilot-cli-work/cubby.json"
     }
   ],
@@ -76,8 +76,27 @@
       "reconstructed": false,
       "clock_in_sha256": "a60d22ba3cd1be5b28ee831b505e57ac28622c66dfe348c557951d0794cc61a5",
       "clock_out_sha256": "6ad9bc0b9925b25541971705d9e679c44c226ea71013ea0310a4e13af773108b",
-      "proof_status": "unproved",
-      "proofs": []
+      "proof_status": "proved",
+      "proofs": [
+        {
+          "event_sha256": "73dbae9a89642b2de0c4b2e55d6ff2297097c52ae4f977977555fb71e702152f",
+          "utc": "2026-08-16T00:41:19Z",
+          "shift_id": "proof-of-work-trail",
+          "clock_out_sha256": "6ad9bc0b9925b25541971705d9e679c44c226ea71013ea0310a4e13af773108b",
+          "ledger_commit": "https://github.com/kody-w/rapp-work-cubbies/commit/1faf4805cdb96947dab4d43ac49c13cd032be82a",
+          "ledger_pull_request": "https://github.com/kody-w/rapp-work-cubbies/pull/7",
+          "ci_runs": [
+            "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31917761176",
+            "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31917771558"
+          ],
+          "artifacts": [
+            "https://kody-w.github.io/rapp-work-cubbies/",
+            "https://kody-w.github.io/rapp-work-cubbies/global.json",
+            "https://kody-w.github.io/rapp-work-cubbies/proof.json"
+          ],
+          "note": "Proof-trail feature shift landed through an isolated clock-out PR, validator CI, report publisher, and public proof endpoints."
+        }
+      ]
     },
     {
       "member_id": "copilot-cli-work",
@@ -317,8 +336,27 @@
       "reconstructed": false,
       "clock_in_sha256": "a60d22ba3cd1be5b28ee831b505e57ac28622c66dfe348c557951d0794cc61a5",
       "clock_out_sha256": "6ad9bc0b9925b25541971705d9e679c44c226ea71013ea0310a4e13af773108b",
-      "proof_status": "unproved",
-      "proofs": []
+      "proof_status": "proved",
+      "proofs": [
+        {
+          "event_sha256": "73dbae9a89642b2de0c4b2e55d6ff2297097c52ae4f977977555fb71e702152f",
+          "utc": "2026-08-16T00:41:19Z",
+          "shift_id": "proof-of-work-trail",
+          "clock_out_sha256": "6ad9bc0b9925b25541971705d9e679c44c226ea71013ea0310a4e13af773108b",
+          "ledger_commit": "https://github.com/kody-w/rapp-work-cubbies/commit/1faf4805cdb96947dab4d43ac49c13cd032be82a",
+          "ledger_pull_request": "https://github.com/kody-w/rapp-work-cubbies/pull/7",
+          "ci_runs": [
+            "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31917761176",
+            "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31917771558"
+          ],
+          "artifacts": [
+            "https://kody-w.github.io/rapp-work-cubbies/",
+            "https://kody-w.github.io/rapp-work-cubbies/global.json",
+            "https://kody-w.github.io/rapp-work-cubbies/proof.json"
+          ],
+          "note": "Proof-trail feature shift landed through an isolated clock-out PR, validator CI, report publisher, and public proof endpoints."
+        }
+      ]
     },
     {
       "member_id": "copilot-cli-work",
@@ -532,5 +570,5 @@
       ]
     }
   ],
-  "generated_at": "2026-08-16T00:40:18Z"
+  "generated_at": "2026-08-16T00:41:46Z"
 }
