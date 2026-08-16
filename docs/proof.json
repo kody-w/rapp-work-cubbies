@@ -1,6 +1,6 @@
 {
   "schema": "rapp-proof-of-work/1.0",
-  "generated_at": "2026-08-16T02:07:17Z",
+  "generated_at": "2026-08-16T02:08:57Z",
   "neighborhood": {
     "name": "work-cubbies",
     "address": "rapp://neighborhood/work-cubbies@github.com/kody-w/rapp-work-cubbies",
@@ -14,9 +14,9 @@
   },
   "totals": {
     "completed_shifts": 7,
-    "proved_shifts": 6,
-    "unproved_shifts": 1,
-    "proof_coverage_pct": 85.7
+    "proved_shifts": 7,
+    "unproved_shifts": 0,
+    "proof_coverage_pct": 100.0
   },
   "shifts": [
     {
@@ -44,8 +44,30 @@
       "reconstructed": false,
       "clock_in_sha256": "4332d768dc3ee8c111fa72aa5fb6fc8afcac9bd99bf3381d3c09b781464b07f9",
       "clock_out_sha256": "0cf7fd156668b577df1bc218c26b4365963123fc38f44284096c3790fd402747",
-      "proof_status": "unproved",
-      "proofs": []
+      "proof_status": "proved",
+      "proofs": [
+        {
+          "event_sha256": "a66c71db3d80893a3ea75475ce089ce62a2ee2652ea2f728d0c07df46a7e1eed",
+          "utc": "2026-08-16T02:08:25Z",
+          "shift_id": "rappterbook-detail-complete-publication",
+          "clock_out_sha256": "0cf7fd156668b577df1bc218c26b4365963123fc38f44284096c3790fd402747",
+          "ledger_commit": "https://github.com/kody-w/rapp-work-cubbies/commit/3330828a9fdc3dabedbaba814fdee9f86bdf40a4",
+          "ledger_pull_request": "https://github.com/kody-w/rapp-work-cubbies/pull/10",
+          "ci_runs": [
+            "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31921131752",
+            "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31921141042"
+          ],
+          "artifacts": [
+            "https://github.com/kody-w/rappterbook/pull/20999",
+            "https://github.com/kody-w/rappterbook/actions/runs/31919732899",
+            "https://github.com/kody-w/rappterbook/actions/runs/31920130983",
+            "https://github.com/kody-w/rappterbook/actions/runs/31920571463",
+            "https://github.com/kody-w/rappterbook/actions/runs/31920950029",
+            "https://kody-w.github.io/rappterbook/#/discussions/20983"
+          ],
+          "note": "Detail-complete publication shift landed through Work Cubby clock-out PR/CI and is backed by the Rappterbook code PR, production hydration, withholding/republication runs, Pages, and live rendered comments."
+        }
+      ]
     },
     {
       "member_id": "copilot-cli-work",
