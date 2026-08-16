@@ -1,6 +1,6 @@
 {
   "schema": "rapp-proof-of-work/1.0",
-  "generated_at": "2026-08-16T00:36:45Z",
+  "generated_at": "2026-08-16T00:38:55Z",
   "neighborhood": {
     "name": "work-cubbies",
     "address": "rapp://neighborhood/work-cubbies@github.com/kody-w/rapp-work-cubbies",
@@ -14,9 +14,9 @@
   },
   "totals": {
     "completed_shifts": 5,
-    "proved_shifts": 0,
-    "unproved_shifts": 5,
-    "proof_coverage_pct": 0.0
+    "proved_shifts": 5,
+    "unproved_shifts": 0,
+    "proof_coverage_pct": 100.0
   },
   "shifts": [
     {
@@ -43,8 +43,27 @@
       "reconstructed": false,
       "clock_in_sha256": "f570fb1c786806fd2ad000a29c36f3b105bfe223fefc756044ae131db0eab879",
       "clock_out_sha256": "0eb6cf827913b39b3626636c61017e0cc6465438f5041ee46ac4c8e85f62ee4c",
-      "proof_status": "unproved",
-      "proofs": []
+      "proof_status": "proved",
+      "proofs": [
+        {
+          "event_sha256": "2e636a20d685a4f1a55a85d8808c3b5ad968d40998af19e444507117e9f52cc3",
+          "utc": "2026-08-16T00:38:23Z",
+          "shift_id": "global-public-report",
+          "clock_out_sha256": "0eb6cf827913b39b3626636c61017e0cc6465438f5041ee46ac4c8e85f62ee4c",
+          "ledger_commit": "https://github.com/kody-w/rapp-work-cubbies/commit/f2c0e32d00f25a6d228c0ae91991af96db668749",
+          "ledger_pull_request": "https://github.com/kody-w/rapp-work-cubbies/pull/3",
+          "ci_runs": [
+            "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31912603792",
+            "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31912617430"
+          ],
+          "artifacts": [
+            "https://kody-w.github.io/rapp-work-cubbies/",
+            "https://kody-w.github.io/rapp-work-cubbies/global.json",
+            "https://kody-w.github.io/rapp-work-cubbies/proof.json"
+          ],
+          "note": "Observed report-building shift landed through a member-isolated PR, validator CI, report publisher, and Pages."
+        }
+      ]
     },
     {
       "member_id": "copilot-cli-work",
@@ -70,8 +89,25 @@
       "reconstructed": false,
       "clock_in_sha256": "c4957b44dec20a2a96dae4aa5bafed3c7250ca3ced2a9e365729bb44fa37da6d",
       "clock_out_sha256": "5ded1eda6ea756478d5518cf9fd2dc7b48de2fd7caee633bb890c6eeccd8fd62",
-      "proof_status": "unproved",
-      "proofs": []
+      "proof_status": "proved",
+      "proofs": [
+        {
+          "event_sha256": "7d8825c2959c865a5fda31fa7d13525b1fcbb2a41e65294d38af05e62b7f318a",
+          "utc": "2026-08-16T00:38:23Z",
+          "shift_id": "current-comment-cubby",
+          "clock_out_sha256": "5ded1eda6ea756478d5518cf9fd2dc7b48de2fd7caee633bb890c6eeccd8fd62",
+          "ledger_commit": "https://github.com/kody-w/rapp-work-cubbies/commit/b3f00a192d48f1b2c6804e53acfddb106f36fd85",
+          "ledger_pull_request": null,
+          "ci_runs": [
+            "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31903341883"
+          ],
+          "artifacts": [
+            "https://kody-w.github.io/rapp-work-cubbies/proof.json",
+            "https://kody-w.github.io/rappterbook/#/discussions/20983"
+          ],
+          "note": "Observed shift clock-out landed on public main and passed Work Cubbies validation."
+        }
+      ]
     },
     {
       "member_id": "copilot-cli-work",
@@ -92,8 +128,24 @@
       "reconstructed": true,
       "clock_in_sha256": "e27dca2b87957ff0c4b7b6204beda942f4631703cbb6f74751f3fdfa715caad3",
       "clock_out_sha256": "df31e23e00ff58944c535256aff7d5708e0f4fe6ba83e04a301a1b3fad6ba47a",
-      "proof_status": "unproved",
-      "proofs": []
+      "proof_status": "proved",
+      "proofs": [
+        {
+          "event_sha256": "efe01f32b1326842547880c4ffcb006210b75404177f902fc7e00844dc6c6ea6",
+          "utc": "2026-08-16T00:38:23Z",
+          "shift_id": "copilot-cli-work-import-20260815T172452Z",
+          "clock_out_sha256": "df31e23e00ff58944c535256aff7d5708e0f4fe6ba83e04a301a1b3fad6ba47a",
+          "ledger_commit": "https://github.com/kody-w/rapp-work-cubbies/commit/8804651a3b5fbf60e74cb74747aa62615ee2cef6",
+          "ledger_pull_request": null,
+          "ci_runs": [
+            "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31902653696"
+          ],
+          "artifacts": [
+            "https://kody-w.github.io/rapp-work-cubbies/proof.json"
+          ],
+          "note": "Reconstructed session shift was published in the public repository bootstrap and passed validator CI."
+        }
+      ]
     },
     {
       "member_id": "copilot-cli-work",
@@ -118,8 +170,24 @@
       "reconstructed": true,
       "clock_in_sha256": "a39428081b565ba8573aa423353ed2f67d1a91b611b3f37e3d0f973685d6151d",
       "clock_out_sha256": "365e9a33563ff4dce6f23cb7f12a436cc802865ab4c37777a80d0f42c1e39179",
-      "proof_status": "unproved",
-      "proofs": []
+      "proof_status": "proved",
+      "proofs": [
+        {
+          "event_sha256": "64bec96405dc621f6f883be8decb972192420900f360b2b124aeca5a082a0a27",
+          "utc": "2026-08-16T00:38:23Z",
+          "shift_id": "copilot-cli-work-import-20260815T084706Z",
+          "clock_out_sha256": "365e9a33563ff4dce6f23cb7f12a436cc802865ab4c37777a80d0f42c1e39179",
+          "ledger_commit": "https://github.com/kody-w/rapp-work-cubbies/commit/8804651a3b5fbf60e74cb74747aa62615ee2cef6",
+          "ledger_pull_request": null,
+          "ci_runs": [
+            "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31902653696"
+          ],
+          "artifacts": [
+            "https://kody-w.github.io/rapp-work-cubbies/proof.json"
+          ],
+          "note": "Reconstructed session shift was published in the public repository bootstrap and passed validator CI."
+        }
+      ]
     },
     {
       "member_id": "copilot-cli-work",
@@ -143,8 +211,24 @@
       "reconstructed": true,
       "clock_in_sha256": "5ddefb9237d405e3f67645b19936bd906cb0d112909fbd7cb42a0db336729403",
       "clock_out_sha256": "1aea1f43220a8ac918ae32b52933e9cc88b73dd4e51f9b3c8bb25cfb5b8412dc",
-      "proof_status": "unproved",
-      "proofs": []
+      "proof_status": "proved",
+      "proofs": [
+        {
+          "event_sha256": "133e6d32e2ce195bdfe8fe8063336462ef460a134387305baeda7644fcdfea13",
+          "utc": "2026-08-16T00:38:23Z",
+          "shift_id": "copilot-cli-work-import-20260815T024600Z",
+          "clock_out_sha256": "1aea1f43220a8ac918ae32b52933e9cc88b73dd4e51f9b3c8bb25cfb5b8412dc",
+          "ledger_commit": "https://github.com/kody-w/rapp-work-cubbies/commit/8804651a3b5fbf60e74cb74747aa62615ee2cef6",
+          "ledger_pull_request": null,
+          "ci_runs": [
+            "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31902653696"
+          ],
+          "artifacts": [
+            "https://kody-w.github.io/rapp-work-cubbies/proof.json"
+          ],
+          "note": "Reconstructed session shift was published in the public repository bootstrap and passed validator CI."
+        }
+      ]
     }
   ]
 }
