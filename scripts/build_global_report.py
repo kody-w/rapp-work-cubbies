@@ -14,6 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
 JSON_OUTPUT = DOCS / "global.json"
+PROOF_OUTPUT = DOCS / "proof.json"
 HTML_OUTPUT = DOCS / "index.html"
 sys.path.insert(0, str(ROOT))
 import work_cubby  # noqa: E402
@@ -58,6 +59,17 @@ def member_report(root: Path, cubby: Path) -> tuple[dict, list[dict], list[dict]
     manifest = json.loads((cubby / "cubby.json").read_text(encoding="utf-8"))
     records = read_records(cubby)
     clock_ins: dict[str, dict] = {}
+    proofs: dict[str, list[dict]] = {}
+    for record in records:
+        if record.get("kind") != "cubby.proof":
+            continue
+        shift_id = record.get("payload", {}).get("shift_id")
+        if shift_id:
+            proofs.setdefault(shift_id, []).append({
+                "event_sha256": record.get("sha256"),
+                "utc": record.get("utc"),
+                **record.get("payload", {}),
+            })
     completed = []
     for record in records:
         payload = record.get("payload", {})
@@ -82,7 +94,10 @@ def member_report(root: Path, cubby: Path) -> tuple[dict, list[dict], list[dict]
                     record.get("reconstructed")
                     or (started or {}).get("reconstructed")
                 ),
-                "sha256": record.get("sha256"),
+                "clock_in_sha256": (started or {}).get("sha256"),
+                "clock_out_sha256": record.get("sha256"),
+                "proof_status": "proved" if proofs.get(shift_id) else "unproved",
+                "proofs": proofs.get(shift_id, []),
             })
 
     active = [{
@@ -117,6 +132,12 @@ def member_report(root: Path, cubby: Path) -> tuple[dict, list[dict], list[dict]
         "total_seconds": observed_seconds + reconstructed_seconds,
         "total_hms": elapsed_hms(observed_seconds + reconstructed_seconds),
         "evidence_count": sum(len(row["evidence"]) for row in completed),
+        "proved_shifts": sum(
+            1 for row in completed if row["proof_status"] == "proved"
+        ),
+        "unproved_shifts": sum(
+            1 for row in completed if row["proof_status"] != "proved"
+        ),
         "ledger_records": len(records),
         "ledger_head_sha256": records[-1].get("sha256") if records else None,
         "cubby_manifest": (
@@ -173,10 +194,36 @@ def semantic_report(root: Path) -> dict:
             "total_seconds": observed_seconds + reconstructed_seconds,
             "total_hms": elapsed_hms(observed_seconds + reconstructed_seconds),
             "evidence_count": sum(row["evidence_count"] for row in members),
+            "proved_shifts": sum(row["proved_shifts"] for row in members),
+            "unproved_shifts": sum(row["unproved_shifts"] for row in members),
+            "proof_coverage_pct": round(
+                100
+                * sum(row["proved_shifts"] for row in members)
+                / max(1, len(completed)),
+                1,
+            ),
         },
         "members": members,
         "active_shifts": active,
+        "completed_shifts": completed,
         "recent_completed_shifts": completed[:100],
+    }
+
+
+def proof_report(report: dict) -> dict:
+    """Build the complete machine-readable proof trail."""
+    return {
+        "schema": "rapp-proof-of-work/1.0",
+        "generated_at": report["generated_at"],
+        "neighborhood": report["neighborhood"],
+        "privacy": report["privacy"],
+        "totals": {
+            "completed_shifts": report["totals"]["completed_shifts"],
+            "proved_shifts": report["totals"]["proved_shifts"],
+            "unproved_shifts": report["totals"]["unproved_shifts"],
+            "proof_coverage_pct": report["totals"]["proof_coverage_pct"],
+        },
+        "shifts": report["completed_shifts"],
     }
 
 
@@ -209,6 +256,26 @@ def evidence_html(values: list[str]) -> str:
     return "<ul>" + "".join(items) + "</ul>" if items else "<p>None recorded.</p>"
 
 
+def proofs_html(values: list[dict]) -> str:
+    """Render public source-control and CI proof attestations."""
+    if not values:
+        return '<p class="unproved">No cubby source-control attestation yet.</p>'
+    rows = []
+    for proof in values:
+        links = [
+            proof.get("ledger_commit"),
+            proof.get("ledger_pull_request"),
+            *proof.get("ci_runs", []),
+            *proof.get("artifacts", []),
+        ]
+        rows.append(
+            '<div class="proof"><strong>Proved</strong>'
+            f'<p>Attestation <code>{html.escape(proof["event_sha256"])}</code></p>'
+            f'{evidence_html([value for value in links if value])}</div>'
+        )
+    return "".join(rows)
+
+
 def render_html(report: dict) -> str:
     """Render a static, dependency-free global work report."""
     totals = report["totals"]
@@ -225,7 +292,8 @@ def render_html(report: dict) -> str:
 <dl><dt>Observed</dt><dd>{row["observed_hms"]}</dd>
 <dt>Reconstructed</dt><dd>{row["reconstructed_hms"]}</dd>
 <dt>Total</dt><dd>{row["total_hms"]}</dd>
-<dt>Completed shifts</dt><dd>{row["completed_shifts"]}</dd></dl>
+<dt>Completed shifts</dt><dd>{row["completed_shifts"]}</dd>
+<dt>Proved shifts</dt><dd>{row["proved_shifts"]}</dd></dl>
 <p class="hash">Ledger head: <code>{html.escape(row["ledger_head_sha256"] or "none")}</code></p>
 </article>"""
         for row in report["members"]
@@ -236,7 +304,10 @@ def render_html(report: dict) -> str:
 <p>{html.escape(row["summary"])}</p>
 <p>{html.escape(row["started_at"] or "")} → {html.escape(row["ended_at"] or "")}
 {" · reconstructed" if row["reconstructed"] else " · observed"}</p>
+<p>Clock-in: <code>{html.escape(row["clock_in_sha256"] or "none")}</code><br>
+Clock-out: <code>{html.escape(row["clock_out_sha256"] or "none")}</code></p>
 <details><summary>Evidence ({len(row["evidence"])})</summary>{evidence_html(row["evidence"])}</details>
+<details open><summary>Proof trail · {html.escape(row["proof_status"])}</summary>{proofs_html(row["proofs"])}</details>
 </article>"""
         for row in report["recent_completed_shifts"]
     ) or '<p class="empty">No completed shifts yet.</p>'
@@ -252,12 +323,13 @@ main{{max-width:1100px;margin:auto}}a{{color:var(--blue)}}code{{word-break:break
 .total,.member,.shift{{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}}
 .total strong{{display:block;font-size:1.7rem;color:var(--green)}}dl{{display:grid;grid-template-columns:1fr auto;gap:5px 12px}}
 dt{{color:var(--muted)}}dd{{margin:0}}.active{{border-color:var(--green)}}.hash{{font-size:.78rem;color:var(--muted)}}
+.proof{{border-left:3px solid var(--green);padding-left:12px}}.unproved{{color:#f2cc8f}}
 .empty{{color:var(--muted)}}footer{{margin-top:32px;color:var(--muted);font-size:.9rem}}
 </style></head><body><main>
 <h1>Work Cubbies</h1>
 <p class="lead">Global, privacy-safe reporting of important agent work. Observed and reconstructed hours are always separate.</p>
 <p><a href="https://github.com/kody-w/rapp-work-cubbies">Join the neighborhood</a> ·
-<a href="global.json">Machine-readable report</a></p>
+<a href="global.json">Machine report</a> · <a href="proof.json">Proof trail</a></p>
 <section><h2>Global totals</h2><div class="totals">
 <div class="total"><strong>{totals["members"]}</strong>members</div>
 <div class="total"><strong>{totals["active_shifts"]}</strong>active shifts</div>
@@ -265,6 +337,7 @@ dt{{color:var(--muted)}}dd{{margin:0}}.active{{border-color:var(--green)}}.hash{
 <div class="total"><strong>{totals["reconstructed_hms"]}</strong>reconstructed work</div>
 <div class="total"><strong>{totals["total_hms"]}</strong>total recorded</div>
 <div class="total"><strong>{totals["evidence_count"]}</strong>evidence references</div>
+<div class="total"><strong>{totals["proof_coverage_pct"]}%</strong>proved shifts</div>
 </div></section>
 <section><h2>Clocked in now</h2><div class="grid">{active}</div></section>
 <section><h2>Members</h2><div class="grid">{members}</div></section>
@@ -295,12 +368,15 @@ def main() -> int:
         current = json.loads(JSON_OUTPUT.read_text(encoding="utf-8"))
     report = build_report(ROOT, current)
     json_text = json.dumps(report, indent=2, ensure_ascii=False) + "\n"
+    proof_text = json.dumps(proof_report(report), indent=2, ensure_ascii=False) + "\n"
     html_text = render_html(report)
     if args.check:
         stale = (
             not JSON_OUTPUT.exists()
             or not HTML_OUTPUT.exists()
+            or not PROOF_OUTPUT.exists()
             or JSON_OUTPUT.read_text(encoding="utf-8") != json_text
+            or PROOF_OUTPUT.read_text(encoding="utf-8") != proof_text
             or HTML_OUTPUT.read_text(encoding="utf-8") != html_text
         )
         if stale:
@@ -309,6 +385,7 @@ def main() -> int:
         print("global public report is current")
         return 0
     write_atomic(JSON_OUTPUT, json_text)
+    write_atomic(PROOF_OUTPUT, proof_text)
     write_atomic(HTML_OUTPUT, html_text)
     print(
         f"reported {report['totals']['members']} member(s), "
@@ -320,4 +397,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

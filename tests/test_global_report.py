@@ -62,6 +62,21 @@ class GlobalReportTests(unittest.TestCase):
             at="2026-08-15T03:30:00Z",
             shift_id="observed",
         )
+        observed_clock_out = work_cubby.completed_shift_records(
+            work_cubby.read_ledger("agent-a")
+        )["observed"]
+        work_cubby.attest(argparse.Namespace(
+            member="agent-a",
+            shift_id="observed",
+            clock_out_sha256=observed_clock_out["sha256"],
+            ledger_commit="https://github.com/example/repo/commit/abc123",
+            ledger_pull_request="https://github.com/example/repo/pull/2",
+            ci_run=["https://github.com/example/repo/actions/runs/3"],
+            artifact=["https://example.test/report"],
+            note="Verified",
+            at="2026-08-15T03:31:00Z",
+            reconstructed=False,
+        ))
         work_cubby.clock_in(argparse.Namespace(
             member="agent-a",
             at="2026-08-15T04:00:00Z",
@@ -79,6 +94,15 @@ class GlobalReportTests(unittest.TestCase):
         self.assertEqual(1, report["totals"]["active_shifts"])
         self.assertEqual("Still working", report["active_shifts"][0]["task"])
         self.assertEqual(2, report["totals"]["completed_shifts"])
+        self.assertEqual(1, report["totals"]["proved_shifts"])
+        self.assertEqual(1, report["totals"]["unproved_shifts"])
+        self.assertEqual(50.0, report["totals"]["proof_coverage_pct"])
+        observed = next(
+            row for row in report["completed_shifts"]
+            if row["shift_id"] == "observed"
+        )
+        self.assertEqual("proved", observed["proof_status"])
+        self.assertEqual(1, len(observed["proofs"]))
 
     def test_html_escapes_member_and_shift_text(self):
         report = build_global_report.semantic_report(self.root)
@@ -112,7 +136,45 @@ class GlobalReportTests(unittest.TestCase):
         second = build_global_report.build_report(self.root, first)
         self.assertEqual(first, second)
 
+    def test_proof_report_exposes_complete_hash_chain(self):
+        work_cubby.clock_in(argparse.Namespace(
+            member="agent-a",
+            at="2026-08-15T07:00:00Z",
+            shift_id="proof-endpoint",
+            task="Prove it",
+            source="observed",
+            reconstructed=False,
+        ))
+        clock_out = work_cubby._clock_out(
+            "agent-a",
+            summary="Proved it",
+            evidence=["https://example.test/work"],
+            at="2026-08-15T07:10:00Z",
+            shift_id="proof-endpoint",
+        )
+        work_cubby.attest(argparse.Namespace(
+            member="agent-a",
+            shift_id="proof-endpoint",
+            clock_out_sha256=clock_out["sha256"],
+            ledger_commit="https://github.com/example/repo/commit/def456",
+            ledger_pull_request="https://github.com/example/repo/pull/4",
+            ci_run=["https://github.com/example/repo/actions/runs/5"],
+            artifact=["https://example.test/proof"],
+            note="Endpoint proof",
+            at="2026-08-15T07:11:00Z",
+            reconstructed=False,
+        ))
+        report = build_global_report.build_report(self.root)
+        proof = build_global_report.proof_report(report)
+        shift = next(
+            row for row in proof["shifts"]
+            if row["shift_id"] == "proof-endpoint"
+        )
+        self.assertEqual("proved", shift["proof_status"])
+        self.assertEqual(clock_out["sha256"], shift["clock_out_sha256"])
+        self.assertTrue(shift["clock_in_sha256"])
+        self.assertEqual(1, len(shift["proofs"]))
+
 
 if __name__ == "__main__":
     unittest.main()
-

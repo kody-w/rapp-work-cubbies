@@ -21,7 +21,10 @@
     "reconstructed_hms": "09:35:16",
     "total_seconds": 39965,
     "total_hms": "11:06:05",
-    "evidence_count": 32
+    "evidence_count": 32,
+    "proved_shifts": 0,
+    "unproved_shifts": 5,
+    "proof_coverage_pct": 0.0
   },
   "members": [
     {
@@ -39,6 +42,8 @@
       "total_seconds": 39965,
       "total_hms": "11:06:05",
       "evidence_count": 32,
+      "proved_shifts": 0,
+      "unproved_shifts": 5,
       "ledger_records": 12,
       "ledger_head_sha256": "a60d22ba3cd1be5b28ee831b505e57ac28622c66dfe348c557951d0794cc61a5",
       "cubby_manifest": "https://raw.githubusercontent.com/kody-w/rapp-work-cubbies/main/cubbies/copilot-cli-work/cubby.json"
@@ -54,6 +59,135 @@
       "started_at": "2026-08-16T00:35:03Z",
       "reconstructed": false,
       "sha256": "a60d22ba3cd1be5b28ee831b505e57ac28622c66dfe348c557951d0794cc61a5"
+    }
+  ],
+  "completed_shifts": [
+    {
+      "member_id": "copilot-cli-work",
+      "display_name": "Copilot CLI Work Cubby",
+      "shift_id": "global-public-report",
+      "task": "Build privacy-safe global public reporting across all Work Cubbies",
+      "source": "Copilot CLI session timestamp",
+      "started_at": "2026-08-15T22:32:05Z",
+      "ended_at": "2026-08-15T22:37:01Z",
+      "elapsed_seconds": 296,
+      "elapsed_hms": "00:04:56",
+      "summary": "Published global, privacy-safe Work Cubby reporting with observed and reconstructed time separated, active shifts listed without speculative duration, public evidence and ledger heads exposed, PII/secret/private-path gates, automated report refreshes after cubby merges, and GitHub Pages human/machine endpoints.",
+      "evidence": [
+        "https://github.com/kody-w/rapp-work-cubbies/pull/1",
+        "https://github.com/kody-w/rapp-work-cubbies/pull/2",
+        "commit:8017335915a4d6522065f54da3f65aece0b6b21f",
+        "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31912522180",
+        "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31912538944",
+        "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31912551858",
+        "https://kody-w.github.io/rapp-work-cubbies/",
+        "https://kody-w.github.io/rapp-work-cubbies/global.json"
+      ],
+      "reconstructed": false,
+      "clock_in_sha256": "f570fb1c786806fd2ad000a29c36f3b105bfe223fefc756044ae131db0eab879",
+      "clock_out_sha256": "0eb6cf827913b39b3626636c61017e0cc6465438f5041ee46ac4c8e85f62ee4c",
+      "proof_status": "unproved",
+      "proofs": []
+    },
+    {
+      "member_id": "copilot-cli-work",
+      "display_name": "Copilot CLI Work Cubby",
+      "shift_id": "current-comment-cubby",
+      "task": "Fix Rappterbook discussion comment truth and build the Work Cubbies neighborhood",
+      "source": "Copilot CLI session timestamp",
+      "started_at": "2026-08-15T17:48:13Z",
+      "ended_at": "2026-08-15T19:14:06Z",
+      "elapsed_seconds": 5153,
+      "elapsed_hms": "01:25:53",
+      "summary": "Fixed Rappterbook discussion engagement semantics end to end and created the public/local Work Cubbies neighborhood. Cards and detail pages now share one vote-comment contract; missing public comment bodies are disclosed instead of rendered as zero. Added append-only cubby tooling, validator CI, imported historical session shifts, published the neighborhood, and mirrored the Copilot cubby under ~/.brainstem/cubbies.",
+      "evidence": [
+        "https://github.com/kody-w/rappterbook/pull/20994",
+        "commit:15c8b168a533d10522bc1494d41bdabcbddab262",
+        "https://github.com/kody-w/rappterbook/actions/runs/31902683671",
+        "https://github.com/kody-w/rappterbook/actions/runs/31903185833",
+        "https://github.com/kody-w/rapp-work-cubbies",
+        "commit:8804651",
+        "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31902653696",
+        "https://kody-w.github.io/rappterbook/#/discussions/20983"
+      ],
+      "reconstructed": false,
+      "clock_in_sha256": "c4957b44dec20a2a96dae4aa5bafed3c7250ca3ced2a9e365729bb44fa37da6d",
+      "clock_out_sha256": "5ded1eda6ea756478d5518cf9fd2dc7b48de2fd7caee633bb890c6eeccd8fd62",
+      "proof_status": "unproved",
+      "proofs": []
+    },
+    {
+      "member_id": "copilot-cli-work",
+      "display_name": "Copilot CLI Work Cubby",
+      "shift_id": "copilot-cli-work-import-20260815T172452Z",
+      "task": "Make iMessage delivery persistent and sparse workflows observable",
+      "source": "session evidence",
+      "started_at": "2026-08-15T17:24:52Z",
+      "ended_at": "2026-08-15T17:45:23Z",
+      "elapsed_seconds": 1231,
+      "elapsed_hms": "00:20:31",
+      "summary": "Installed a reboot/login-persistent Aqua outbox drainer and fixed Sentinel so low-frequency failed workflows cannot disappear from a busy shared run window.",
+      "evidence": [
+        "https://github.com/kody-w/rapp-sentinel/pull/71",
+        "https://github.com/kody-w/rapp-sentinel/pull/72",
+        "https://github.com/kody-w/openrappter/issues/149"
+      ],
+      "reconstructed": true,
+      "clock_in_sha256": "e27dca2b87957ff0c4b7b6204beda942f4631703cbb6f74751f3fdfa715caad3",
+      "clock_out_sha256": "df31e23e00ff58944c535256aff7d5708e0f4fe6ba83e04a301a1b3fad6ba47a",
+      "proof_status": "unproved",
+      "proofs": []
+    },
+    {
+      "member_id": "copilot-cli-work",
+      "display_name": "Copilot CLI Work Cubby",
+      "shift_id": "copilot-cli-work-import-20260815T084706Z",
+      "task": "Adversarial buzzsaw audit and repair of the production health system",
+      "source": "session evidence",
+      "started_at": "2026-08-15T08:47:06Z",
+      "ended_at": "2026-08-15T12:01:22Z",
+      "elapsed_seconds": 11656,
+      "elapsed_hms": "03:14:16",
+      "summary": "Fanned out independent critics and builders; fixed Sentinel HEAD isolation and outbox atomicity, Rappterverse restart/lease semantics, Rappterbook feed/API/analytics authority, and verified live public outputs.",
+      "evidence": [
+        "https://github.com/kody-w/rapp-sentinel/pull/69",
+        "https://github.com/kody-w/rapp-sentinel/pull/70",
+        "https://github.com/kody-w/rappterverse/pull/6473",
+        "https://github.com/kody-w/rappterverse/pull/6489",
+        "https://github.com/kody-w/rappterbook/pull/20989",
+        "https://github.com/kody-w/rappterbook/pull/20990",
+        "https://github.com/kody-w/rappterbook/pull/20992"
+      ],
+      "reconstructed": true,
+      "clock_in_sha256": "a39428081b565ba8573aa423353ed2f67d1a91b611b3f37e3d0f973685d6151d",
+      "clock_out_sha256": "365e9a33563ff4dce6f23cb7f12a436cc802865ab4c37777a80d0f42c1e39179",
+      "proof_status": "unproved",
+      "proofs": []
+    },
+    {
+      "member_id": "copilot-cli-work",
+      "display_name": "Copilot CLI Work Cubby",
+      "shift_id": "copilot-cli-work-import-20260815T024600Z",
+      "task": "Restore Sentinel, Rappterverse, and Rappterbook from false-green and dead-platform states",
+      "source": "session evidence",
+      "started_at": "2026-08-15T02:46:00Z",
+      "ended_at": "2026-08-15T08:46:29Z",
+      "elapsed_seconds": 21629,
+      "elapsed_hms": "06:00:29",
+      "summary": "Repaired static phone reporting, revived the persistent Rappterverse loop, restored full-corpus Rappterbook truth, fixed workflow semantics, and merged the initial Sentinel/platform repair series.",
+      "evidence": [
+        "https://github.com/kody-w/rapp-sentinel/pull/62",
+        "https://github.com/kody-w/rappterverse/pull/6432",
+        "https://github.com/kody-w/rappterverse/pull/6434",
+        "https://github.com/kody-w/rappterverse/pull/6436",
+        "https://github.com/kody-w/rappterbook/pull/20988",
+        "https://github.com/kody-w/rapp-spine/pull/16"
+      ],
+      "reconstructed": true,
+      "clock_in_sha256": "5ddefb9237d405e3f67645b19936bd906cb0d112909fbd7cb42a0db336729403",
+      "clock_out_sha256": "1aea1f43220a8ac918ae32b52933e9cc88b73dd4e51f9b3c8bb25cfb5b8412dc",
+      "proof_status": "unproved",
+      "proofs": []
     }
   ],
   "recent_completed_shifts": [
@@ -79,7 +213,10 @@
         "https://kody-w.github.io/rapp-work-cubbies/global.json"
       ],
       "reconstructed": false,
-      "sha256": "0eb6cf827913b39b3626636c61017e0cc6465438f5041ee46ac4c8e85f62ee4c"
+      "clock_in_sha256": "f570fb1c786806fd2ad000a29c36f3b105bfe223fefc756044ae131db0eab879",
+      "clock_out_sha256": "0eb6cf827913b39b3626636c61017e0cc6465438f5041ee46ac4c8e85f62ee4c",
+      "proof_status": "unproved",
+      "proofs": []
     },
     {
       "member_id": "copilot-cli-work",
@@ -103,7 +240,10 @@
         "https://kody-w.github.io/rappterbook/#/discussions/20983"
       ],
       "reconstructed": false,
-      "sha256": "5ded1eda6ea756478d5518cf9fd2dc7b48de2fd7caee633bb890c6eeccd8fd62"
+      "clock_in_sha256": "c4957b44dec20a2a96dae4aa5bafed3c7250ca3ced2a9e365729bb44fa37da6d",
+      "clock_out_sha256": "5ded1eda6ea756478d5518cf9fd2dc7b48de2fd7caee633bb890c6eeccd8fd62",
+      "proof_status": "unproved",
+      "proofs": []
     },
     {
       "member_id": "copilot-cli-work",
@@ -122,7 +262,10 @@
         "https://github.com/kody-w/openrappter/issues/149"
       ],
       "reconstructed": true,
-      "sha256": "df31e23e00ff58944c535256aff7d5708e0f4fe6ba83e04a301a1b3fad6ba47a"
+      "clock_in_sha256": "e27dca2b87957ff0c4b7b6204beda942f4631703cbb6f74751f3fdfa715caad3",
+      "clock_out_sha256": "df31e23e00ff58944c535256aff7d5708e0f4fe6ba83e04a301a1b3fad6ba47a",
+      "proof_status": "unproved",
+      "proofs": []
     },
     {
       "member_id": "copilot-cli-work",
@@ -145,7 +288,10 @@
         "https://github.com/kody-w/rappterbook/pull/20992"
       ],
       "reconstructed": true,
-      "sha256": "365e9a33563ff4dce6f23cb7f12a436cc802865ab4c37777a80d0f42c1e39179"
+      "clock_in_sha256": "a39428081b565ba8573aa423353ed2f67d1a91b611b3f37e3d0f973685d6151d",
+      "clock_out_sha256": "365e9a33563ff4dce6f23cb7f12a436cc802865ab4c37777a80d0f42c1e39179",
+      "proof_status": "unproved",
+      "proofs": []
     },
     {
       "member_id": "copilot-cli-work",
@@ -167,8 +313,11 @@
         "https://github.com/kody-w/rapp-spine/pull/16"
       ],
       "reconstructed": true,
-      "sha256": "1aea1f43220a8ac918ae32b52933e9cc88b73dd4e51f9b3c8bb25cfb5b8412dc"
+      "clock_in_sha256": "5ddefb9237d405e3f67645b19936bd906cb0d112909fbd7cb42a0db336729403",
+      "clock_out_sha256": "1aea1f43220a8ac918ae32b52933e9cc88b73dd4e51f9b3c8bb25cfb5b8412dc",
+      "proof_status": "unproved",
+      "proofs": []
     }
   ],
-  "generated_at": "2026-08-16T00:35:33Z"
+  "generated_at": "2026-08-16T00:36:45Z"
 }

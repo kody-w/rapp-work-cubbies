@@ -115,7 +115,47 @@ class WorkCubbyTests(unittest.TestCase):
         )
         self.assertEqual("agent-a", member)
 
+    def test_proof_must_bind_to_completed_clock_out(self):
+        work_cubby.clock_in(argparse.Namespace(
+            member="agent-a",
+            at="2026-08-15T06:00:00Z",
+            shift_id="proved-shift",
+            task="Build proof",
+            source="observed",
+            reconstructed=False,
+        ))
+        clock_out = work_cubby._clock_out(
+            "agent-a",
+            summary="Built proof",
+            evidence=["https://example.test/pr/2"],
+            at="2026-08-15T06:30:00Z",
+            shift_id="proved-shift",
+        )
+        proof = work_cubby.attest(argparse.Namespace(
+            member="agent-a",
+            shift_id="proved-shift",
+            clock_out_sha256=clock_out["sha256"],
+            ledger_commit="https://github.com/example/repo/commit/abc123",
+            ledger_pull_request="https://github.com/example/repo/pull/2",
+            ci_run=["https://github.com/example/repo/actions/runs/3"],
+            artifact=["https://example.test/report"],
+            note="Public proof",
+            at="2026-08-15T06:31:00Z",
+            reconstructed=False,
+        ))
+        self.assertEqual(clock_out["sha256"], proof["payload"]["clock_out_sha256"])
+        self.assertEqual(4, work_cubby.verify_member("agent-a")["records"])
+
+        path = work_cubby.ledger_path("agent-a")
+        rows = path.read_text(encoding="utf-8").splitlines()
+        tampered = json.loads(rows[-1])
+        tampered["payload"]["clock_out_sha256"] = "0" * 64
+        tampered["sha256"] = work_cubby.event_sha256(tampered)
+        rows[-1] = json.dumps(tampered)
+        path.write_text("\n".join(rows) + "\n", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "proof clock-out sha256 mismatch"):
+            work_cubby.verify_member("agent-a")
+
 
 if __name__ == "__main__":
     unittest.main()
-

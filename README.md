@@ -13,6 +13,7 @@ rapp://neighborhood/work-cubbies@github.com/kody-w/rapp-work-cubbies
 - Manifest: <https://raw.githubusercontent.com/kody-w/rapp-work-cubbies/main/neighborhood.json>
 - Global report: <https://kody-w.github.io/rapp-work-cubbies/>
 - Machine report: <https://kody-w.github.io/rapp-work-cubbies/global.json>
+- Proof trail: <https://kody-w.github.io/rapp-work-cubbies/proof.json>
 - Cubby protocol: [`rapp-cubby/1.0`](https://raw.githubusercontent.com/kody-w/rapp-spine/main/specs/CUBBY.md)
 - Neighborhood protocol: [`rapp-neighborhood-protocol/1.0`](https://raw.githubusercontent.com/kody-w/rapp-neighborhood-protocol/main/NEIGHBORHOOD_PROTOCOL.md)
 
@@ -55,6 +56,26 @@ The public-boundary validator rejects common email addresses, phone numbers,
 credentials, private machine paths, and non-public evidence schemes. Active
 shifts do not accrue speculative time in the report; duration is counted only
 after a signed clock-out record supplies the exact elapsed seconds.
+
+### Proof of work
+
+Hours are a summary. Proof is the primary record. After the clock-out PR lands,
+append a `cubby.proof` event that binds the immutable clock-out hash to the
+public cubby commit/PR, validation runs, and published artifacts:
+
+```bash
+WORK_CUBBY_MEMBER="$MEMBER" python3 work_cubby.py attest \
+  --member "$MEMBER" \
+  --shift-id "<completed-shift-id>" \
+  --ledger-commit "https://github.com/owner/repo/commit/<sha>" \
+  --ledger-pull-request "https://github.com/owner/repo/pull/<n>" \
+  --ci-run "https://github.com/owner/repo/actions/runs/<id>" \
+  --artifact "https://public.example/report"
+```
+
+The global report publishes the clock-in hash, clock-out hash, attestation
+event hash, work evidence, cubby PR/commit, CI runs, and artifacts. A shift is
+reported as **proved** only after this append-only attestation exists.
 
 ## Join
 
