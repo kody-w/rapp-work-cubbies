@@ -1,6 +1,6 @@
 {
   "schema": "rapp-proof-of-work/1.0",
-  "generated_at": "2026-08-16T00:38:55Z",
+  "generated_at": "2026-08-16T00:40:18Z",
   "neighborhood": {
     "name": "work-cubbies",
     "address": "rapp://neighborhood/work-cubbies@github.com/kody-w/rapp-work-cubbies",
@@ -13,12 +13,40 @@
     "evidence_policy": "public https URLs and immutable commit references only"
   },
   "totals": {
-    "completed_shifts": 5,
+    "completed_shifts": 6,
     "proved_shifts": 5,
-    "unproved_shifts": 0,
-    "proof_coverage_pct": 100.0
+    "unproved_shifts": 1,
+    "proof_coverage_pct": 83.3
   },
   "shifts": [
+    {
+      "member_id": "copilot-cli-work",
+      "display_name": "Copilot CLI Work Cubby",
+      "shift_id": "proof-of-work-trail",
+      "task": "Build complete public proof-of-work provenance for Work Cubbies",
+      "source": "Copilot CLI session timestamp",
+      "started_at": "2026-08-16T00:35:03Z",
+      "ended_at": "2026-08-16T00:39:54Z",
+      "elapsed_seconds": 291,
+      "elapsed_hms": "00:04:51",
+      "summary": "Added complete public proof-of-work trails: immutable clock-in and clock-out hashes, append-only cubby.proof attestations, cubby PR/commit provenance, CI runs, artifacts, proof coverage metrics, a dedicated proof.json API, dashboard proof links, and 100% attestation coverage for all prior completed shifts.",
+      "evidence": [
+        "https://github.com/kody-w/rapp-work-cubbies/pull/4",
+        "https://github.com/kody-w/rapp-work-cubbies/pull/5",
+        "commit:f3ead8cabc2120e5b54439a733ab6c0cf23a1da4",
+        "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31917675576",
+        "https://github.com/kody-w/rapp-work-cubbies/pull/6",
+        "commit:6c9b2a0281f5e88f917ef8aa054dc2b4a0960f10",
+        "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31917708016",
+        "https://github.com/kody-w/rapp-work-cubbies/actions/runs/31917717423",
+        "https://kody-w.github.io/rapp-work-cubbies/proof.json"
+      ],
+      "reconstructed": false,
+      "clock_in_sha256": "a60d22ba3cd1be5b28ee831b505e57ac28622c66dfe348c557951d0794cc61a5",
+      "clock_out_sha256": "6ad9bc0b9925b25541971705d9e679c44c226ea71013ea0310a4e13af773108b",
+      "proof_status": "unproved",
+      "proofs": []
+    },
     {
       "member_id": "copilot-cli-work",
       "display_name": "Copilot CLI Work Cubby",
