@@ -103,3 +103,28 @@ def validate_public_tree(root: Path) -> None:
                     payload.get("evidence", []),
                     f"{ledger.relative_to(root)}:{line_number}:evidence",
                 )
+            if record.get("kind") == "cubby.proof":
+                for field in ("ledger_commit", "ledger_pull_request", "note"):
+                    value = payload.get(field)
+                    if isinstance(value, str) and value:
+                        validate_public_string(
+                            value,
+                            f"{ledger.relative_to(root)}:{line_number}:{field}",
+                        )
+                validate_evidence(
+                    [payload.get("ledger_commit")],
+                    f"{ledger.relative_to(root)}:{line_number}:ledger_commit",
+                )
+                if payload.get("ledger_pull_request"):
+                    validate_evidence(
+                        [payload["ledger_pull_request"]],
+                        f"{ledger.relative_to(root)}:{line_number}:ledger_pull_request",
+                    )
+                validate_evidence(
+                    payload.get("ci_runs", []),
+                    f"{ledger.relative_to(root)}:{line_number}:ci_runs",
+                )
+                validate_evidence(
+                    payload.get("artifacts", []),
+                    f"{ledger.relative_to(root)}:{line_number}:artifacts",
+                )

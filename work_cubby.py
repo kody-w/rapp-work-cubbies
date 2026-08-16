@@ -358,6 +358,44 @@ def import_shift(args: argparse.Namespace) -> list[dict]:
     return [clock_in_event, clock_out_event]
 
 
+def completed_shift_records(records: list[dict]) -> dict[str, dict]:
+    """Return clock-out records keyed by shift id."""
+    return {
+        record.get("payload", {}).get("shift_id"): record
+        for record in records
+        if record.get("kind") == "cubby.clock_out"
+        and record.get("payload", {}).get("shift_id")
+    }
+
+
+def attest(args: argparse.Namespace) -> dict:
+    """Append public source-control and CI proof for one completed shift."""
+    records = read_ledger(args.member)
+    completed = completed_shift_records(records)
+    clock_out = completed.get(args.shift_id)
+    if not clock_out:
+        raise KeyError(f"completed shift not found: {args.shift_id}")
+    if args.clock_out_sha256 and args.clock_out_sha256 != clock_out["sha256"]:
+        raise ValueError("clock-out sha256 does not match the completed shift")
+    if not args.ledger_commit:
+        raise ValueError("ledger commit evidence is required")
+    return _append_event(
+        args.member,
+        "cubby.proof",
+        {
+            "shift_id": args.shift_id,
+            "clock_out_sha256": clock_out["sha256"],
+            "ledger_commit": args.ledger_commit,
+            "ledger_pull_request": args.ledger_pull_request,
+            "ci_runs": args.ci_run,
+            "artifacts": args.artifact,
+            "note": args.note,
+        },
+        at=args.at,
+        reconstructed=args.reconstructed,
+    )
+
+
 def verify_member(member: str) -> dict:
     """Verify one cubby manifest and its complete ledger chain."""
     manifest_path = cubby_dir(member) / "cubby.json"
@@ -402,6 +440,17 @@ def verify_member(member: str) -> dict:
             raise ValueError(f"{member}: elapsed seconds mismatch")
         if payload.get("elapsed_hms") != elapsed_hms(elapsed):
             raise ValueError(f"{member}: elapsed HH:MM:SS mismatch")
+
+    completed = completed_shift_records(records)
+    for record in records:
+        if record.get("kind") != "cubby.proof":
+            continue
+        payload = record.get("payload", {})
+        shift_id = payload.get("shift_id")
+        if shift_id not in completed:
+            raise ValueError(f"{member}: proof references unknown shift {shift_id}")
+        if payload.get("clock_out_sha256") != completed[shift_id]["sha256"]:
+            raise ValueError(f"{member}: proof clock-out sha256 mismatch")
 
     return {
         "member": member,
@@ -498,6 +547,20 @@ def build_parser() -> argparse.ArgumentParser:
     imported.add_argument("--source", default="session evidence")
     imported.add_argument("--shift-id")
     imported.set_defaults(handler=import_shift)
+
+    proof = commands.add_parser(
+        "attest", help="append public commit/PR/CI proof for a completed shift"
+    )
+    proof.add_argument("--member", required=True)
+    proof.add_argument("--shift-id", required=True)
+    proof.add_argument("--clock-out-sha256")
+    proof.add_argument("--ledger-commit", required=True)
+    proof.add_argument("--ledger-pull-request")
+    proof.add_argument("--ci-run", action="append", default=[])
+    proof.add_argument("--artifact", action="append", default=[])
+    proof.add_argument("--note", default="")
+    add_common_event_flags(proof)
+    proof.set_defaults(handler=attest)
 
     check = commands.add_parser("verify", help="verify every cubby and ledger")
     check.set_defaults(handler=lambda _args: verify_all())
