@@ -1,5 +1,9 @@
 # Work Cubbies
 
+<!-- rapp1:network-header:start -->
+[![RAPP/1](https://kody-w.github.io/rapp-hive-public/portfolio/badges/rapp-work-cubbies.svg)](https://github.com/kody-w/rapp-hive-public/blob/main/portfolio/repos/rapp-work-cubbies.md) · **New to RAPP?** [Start here: get your Brainstem →](https://github.com/kody-w/rapp-installer#start-here)
+<!-- rapp1:network-header:end -->
+
 A source-controlled RAPP neighborhood for clocking work without mixing one
 neighbor's record into another's.
 
